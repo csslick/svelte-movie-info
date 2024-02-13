@@ -5,7 +5,8 @@
     data[i].like += 1;
   }
 
-  let isModal = false;
+  let isModal = false;  // 모달 여부
+  let selectedMovie = 0; // 선택한 영화의 인덱스
 </script>
 
 <main>
@@ -17,22 +18,25 @@
         <img src={movie.imgUrl} alt={movie.title}>
       </figure>
       <div class="info">
-        <h3 class="bg-yellow">{i}: {movie.title}</h3>
+        <h3>{i}: {movie.title}</h3>
         <p>개봉: {movie.year}</p>
         <p>장르: {movie.category}</p>
         <button on:click={() => increment(i)} class="btn">좋아요 {movie.like}</button>
-        <button on:click={()=> isModal=true} class="btn btn-primary">상세보기</button>
+        <button 
+          on:click={()=> {isModal=true; selectedMovie=i}} 
+          class="btn btn-primary"
+        >상세보기</button>
       </div>
     </div>
   {/each}
 </main>
 
-{#if isModal }
+{#if isModal}
 <div class="modal">
   <div class="inner">
-    <h3>Detail</h3>
+    <h3>{data[selectedMovie].title}</h3>
     <p>영화 상세정보</p>
-    <button on:click={()=>{isModal=false}} class="btn">닫기</button> 
+    <button on:click={()=>{isModal=false}} class="btn">닫기</button>
   </div>
 </div>
 {/if}
