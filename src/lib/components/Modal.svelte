@@ -1,12 +1,19 @@
-{#if isModal}
+<script>
+   // props 받기: 모달 여부, 선택한 영화의 인덱스, 데이터
+  export let 
+    isModal = false, 
+    selectedMovie = 0, 
+    data = [];
+  console.log(isModal, selectedMovie, data);
+</script>
+
 <div class="modal">
   <div class="inner">
     <h3>{data[selectedMovie].title}</h3>
     <p>영화 상세정보</p>
-    <button on:click={()=>{isModal=false}} class="btn">닫기</button>
+    <button on:click={() => isModal=false} class="btn">닫기</button>
   </div>
 </div>
-{/if}
 
 
 <style>

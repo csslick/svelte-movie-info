@@ -33,9 +33,11 @@
     </div>
   {/each}
 </main>
-<Modal/>
 
-
+{#if isModal}
+  <!-- <Modal bind:isModal={isModal} data={data} selectedMovie={selectedMovie} /> -->
+  <Modal bind:isModal {data} {selectedMovie} />
+{/if}
 
 <style>
   .btn {
