@@ -4,6 +4,7 @@
   import Modal from './lib/components/Modal.svelte';
   import Movies from './lib/components/Movies.svelte';
   import Event from './lib/components/Event.svelte';
+  import Search from './lib/components/Search.svelte';
 
   const increment = (i) => {
     data[i].like += 1;
@@ -15,6 +16,7 @@
 
 <Navbar />
 <Event />
+<Search />
 
 <Movies {data} bind:isModal bind:selectedMovie {increment} />
 
