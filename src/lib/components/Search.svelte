@@ -1,18 +1,45 @@
 <script>
+  export let data = [];
   let inputText = "";
+  let alertText = "";
+  $: if(inputText.length > 16) {
+    console.log('입력한도 초과');
+    alertText = '입력한도 초과';
+  } 
+
+  const searchMovie = () => {
+    // data에서 inputText를 포함하는 영화를 찾아서 반환
+    let findMovie = data.filter(movie => movie.title.includes(inputText));
+    if(findMovie.length === 0) {
+      alertText = '검색 결과가 없습니다.';
+    } else {
+      alertText = '';
+    }
+    console.log(findMovie);
+    // 입력값 삭제
+    inputText = '';
+  }
 </script>
 
 <div class="search-box">
   <div class="input-group">
-    <input type="search" bind:value={inputText} />
-    <button>검색</button>
+    <input 
+      type="search" 
+      bind:value={inputText} 
+      on:keydown={e => e.key === 'Enter' && searchMovie()}
+    />
+    <button on:click={ searchMovie }>검색</button>
   </div>
 </div>
 <p style="text-align:center">{inputText}</p>
+{#if alertText} 
+  <p style="color:red">{alertText}</p>
+{/if}  
 
 <style>
   .search-box {
     padding: 0 20px;
+    margin-top: 20px;
   }
 
   .input-group {

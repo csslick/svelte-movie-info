@@ -16,7 +16,7 @@
 
 <Navbar />
 <Event />
-<Search />
+<Search {data} />
 
 <Movies {data} bind:isModal bind:selectedMovie {increment} />
 
