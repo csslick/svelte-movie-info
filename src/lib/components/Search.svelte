@@ -1,5 +1,6 @@
 <script>
   export let data = [];
+  export let data_temp = [];
   let inputText = "";
   let alertText = "";
   $: if(inputText.length > 16) {
@@ -9,15 +10,15 @@
 
   const searchMovie = () => {
     // data에서 inputText를 포함하는 영화를 찾아서 반환
-    let findMovie = data.filter(movie => movie.title.includes(inputText));
-    if(findMovie.length === 0) {
+    data_temp = data.filter(movie => movie.title.includes(inputText));
+    if(data_temp.length === 0) {
       alertText = '검색 결과가 없습니다.';
     } else {
       alertText = '';
     }
-    console.log(findMovie);
+    console.log(data_temp);
     // 입력값 삭제
-    inputText = '';
+    // inputText = '';
   }
 </script>
 
@@ -31,6 +32,15 @@
     <button on:click={ searchMovie }>검색</button>
   </div>
 </div>
+<button 
+  on:click={() => {
+    data_temp = JSON.parse(JSON.stringify(data));
+    alertText = '';
+  }} 
+  class='btn' 
+  style='margin-top: 1em;'
+>전체보기</button>
+
 <p style="text-align:center">{inputText}</p>
 {#if alertText} 
   <p style="color:red">{alertText}</p>

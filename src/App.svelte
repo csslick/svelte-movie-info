@@ -12,14 +12,17 @@
 
   let isModal = false;  // 모달 여부
   let selectedMovie = 0; // 선택한 영화의 인덱스
+
+  // data 사본을 생성
+  let data_temp = JSON.parse(JSON.stringify(data));
 </script>
 
-<Navbar />
-<Event />
-<Search {data} />
-
-<Movies {data} bind:isModal bind:selectedMovie {increment} />
-
+<main>
+  <Navbar />
+  <Event />
+  <Search {data} bind:data_temp />
+  <Movies {data_temp} bind:isModal bind:selectedMovie {increment} />
+</main>
 
 {#if isModal}
   <!-- <Modal bind:isModal={isModal} data={data} selectedMovie={selectedMovie} /> -->
@@ -27,3 +30,8 @@
 {/if}
 
 
+<style>
+  main {
+    width: 100vw;
+  }
+</style>

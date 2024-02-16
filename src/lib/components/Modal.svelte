@@ -4,7 +4,7 @@
     isModal = false, 
     selectedMovie = 0, 
     data = [];
-  console.log(isModal, selectedMovie, data);
+  // console.log(isModal, selectedMovie, data);
 </script>
 
 <div class="modal">

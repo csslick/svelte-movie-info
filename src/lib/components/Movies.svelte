@@ -1,7 +1,7 @@
 <script>
   export 
     let 
-      data = [],
+      data_temp = [],
       isModal = false,
       selectedMovie = 0,
       increment;
@@ -10,7 +10,7 @@
 <main>
   <h1>영화정보</h1>
   <!-- 반복문으로 데이터를 출력 -->
-  {#each data as movie, i}
+  {#each data_temp as movie, i}
     <div class="item">
       <figure>
         <img src={movie.imgUrl} alt={movie.title}>
