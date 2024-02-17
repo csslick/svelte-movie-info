@@ -1,5 +1,5 @@
 <script>
-  import { onMount, beforeUpdate, afterUpdate } from "svelte";
+  import { onMount, beforeUpdate, afterUpdate, onDestroy } from "svelte";
   import data from "./lib/movies";
   import Navbar from "./lib/components/Navbar.svelte";
   import Modal from "./lib/components/Modal.svelte";
@@ -37,12 +37,26 @@
     "그날, 대한민국의 운명이 바뀌었다, 서울의 봄",
   ];
   let eventIndex = 0;
+  let intervalEventText = null; // 인터벌 변수
 
   onMount(() => {
     console.log("onMount");
-    setTimeout(() => {
+    // setTimeout(() => {
+    //   eventIndex += 1;
+    // }, 3000)
+
+    // 매 3초마다 eventIndex를 1 증가하고 처음으로 돌아가게 함
+    intervalEventText = setInterval(() => {
       eventIndex += 1;
-    }, 3000)
+      if (eventIndex > eventText.length - 1) {
+        eventIndex = 0;
+      }
+    }, 3000);
+  });
+
+  // 컴포넌트 종료시 인터벌 종료
+  onDestroy(() => {
+    clearInterval(intervalEventText);
   });
 </script>
 
