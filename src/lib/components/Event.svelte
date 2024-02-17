@@ -2,12 +2,14 @@
   import { fly } from 'svelte/transition';
 
   let isEvent = true; // 이벤트 팝업 여부
+  export let eventText = [];
+  export let eventIndex = 0;
 </script>
 
 <!-- <div class={isEvent? 'event show' : 'event'}> -->
 {#if isEvent}  
   <div class="event" transition:fly={{ y: -400, duration: 1000 }}>
-    <p>NETPLIX 강렬한 운명의 드라마, 경기크리처</p>
+    <p>{eventText[eventIndex]}</p>
     <button on:click={()=> isEvent=false}>X</button>
   </div>
 {/if}

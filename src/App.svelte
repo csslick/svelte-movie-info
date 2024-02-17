@@ -1,4 +1,5 @@
 <script>
+  import { onMount, beforeUpdate, afterUpdate } from "svelte";
   import data from "./lib/movies";
   import Navbar from "./lib/components/Navbar.svelte";
   import Modal from "./lib/components/Modal.svelte";
@@ -29,11 +30,25 @@
 
   // data 사본을 생성
   let data_temp = JSON.parse(JSON.stringify(data));
+
+  let eventText = [
+    "NETPLIX 강렬한 운명의 드라마, 경기크리처",
+    "디즈니 100주년 기념작, 위시",
+    "그날, 대한민국의 운명이 바뀌었다, 서울의 봄",
+  ];
+  let eventIndex = 0;
+
+  onMount(() => {
+    console.log("onMount");
+    setTimeout(() => {
+      eventIndex += 1;
+    }, 3000)
+  });
 </script>
 
 <main>
   <Navbar />
-  <Event />
+  <Event {eventText} {eventIndex} />
   <Search {data} bind:data_temp />
   <Movies {data_temp} bind:isModal bind:selectedMovie {increment} />
 </main>
